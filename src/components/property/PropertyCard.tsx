@@ -49,9 +49,9 @@ const PropertyCard = ({
   onAddToComparison = () => {},
 }: PropertyCardProps) => {
   return (
-    <Card className="w-full max-w-[360px] overflow-hidden transition-all duration-300 hover:shadow-lg bg-white h-full">
+    <Card className="w-full max-w-[360px] overflow-hidden transition-all duration-300 hover:shadow-lg hover:translate-y-[-5px] bg-white h-full">
       <CardHeader className="p-0 relative">
-        <div className="relative h-48 w-full overflow-hidden">
+        <div className="relative h-52 w-full overflow-hidden">
           <img
             src={imageUrl}
             alt={title}
@@ -114,14 +114,18 @@ const PropertyCard = ({
           </div>
           <div className="absolute top-2 left-2 flex gap-2">
             {isPremium && (
-              <Badge className="bg-amber-500 hover:bg-amber-600">Premium</Badge>
+              <Badge className="bg-amber-500 hover:bg-amber-600 text-white font-medium shadow-sm">
+                Premium
+              </Badge>
             )}
             {isNew && (
-              <Badge className="bg-emerald-500 hover:bg-emerald-600">New</Badge>
+              <Badge className="bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-sm">
+                New
+              </Badge>
             )}
           </div>
           <div className="absolute bottom-2 left-2">
-            <Badge className="bg-white text-black hover:bg-gray-100">
+            <Badge className="bg-white text-black hover:bg-gray-100 font-medium shadow-sm">
               ${price.toLocaleString()}/month
             </Badge>
           </div>
@@ -152,7 +156,7 @@ const PropertyCard = ({
       <CardFooter className="p-4 pt-0 flex justify-between">
         <Button
           variant="outline"
-          className="w-full"
+          className="w-full hover:bg-primary hover:text-white transition-colors"
           onClick={() => onViewDetails(id)}
         >
           <Eye className="mr-2 h-4 w-4" />

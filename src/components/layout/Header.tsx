@@ -113,7 +113,7 @@ const Header = ({
           {isPremium && (
             <Badge
               variant="secondary"
-              className="ml-2 bg-amber-200 text-amber-900"
+              className="ml-2 bg-amber-200 text-amber-900 font-medium shadow-sm"
             >
               PREMIUM
             </Badge>
@@ -126,7 +126,7 @@ const Header = ({
             to="/"
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/") ? "text-primary font-semibold" : ""}`}
           >
-            <span className="flex items-center">
+            <span className="flex items-center hover:scale-105 transition-transform">
               <Home className="h-4 w-4 mr-1" />
               Home
             </span>
@@ -135,7 +135,7 @@ const Header = ({
             to="/properties"
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/properties") ? "text-primary font-semibold" : ""}`}
           >
-            <span className="flex items-center">
+            <span className="flex items-center hover:scale-105 transition-transform">
               <MapPin className="h-4 w-4 mr-1" />
               Properties
             </span>
@@ -144,7 +144,7 @@ const Header = ({
             to="/property-comparison"
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/property-comparison") ? "text-primary font-semibold" : ""}`}
           >
-            <span className="flex items-center">
+            <span className="flex items-center hover:scale-105 transition-transform">
               <BarChart2 className="h-4 w-4 mr-1" />
               Compare
             </span>
@@ -153,7 +153,7 @@ const Header = ({
             to="/bookings"
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/bookings") ? "text-primary font-semibold" : ""}`}
           >
-            <span className="flex items-center">
+            <span className="flex items-center hover:scale-105 transition-transform">
               <Calendar className="h-4 w-4 mr-1" />
               Bookings
             </span>
@@ -162,9 +162,18 @@ const Header = ({
             to="/dashboard"
             className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/dashboard") ? "text-primary font-semibold" : ""}`}
           >
-            <span className="flex items-center">
+            <span className="flex items-center hover:scale-105 transition-transform">
               <User className="h-4 w-4 mr-1" />
               Dashboard
+            </span>
+          </Link>
+          <Link
+            to="/partners"
+            className={`text-sm font-medium transition-colors hover:text-primary ${isActive("/partners") ? "text-primary font-semibold" : ""}`}
+          >
+            <span className="flex items-center hover:scale-105 transition-transform">
+              <Building className="h-4 w-4 mr-1" />
+              Partners
             </span>
           </Link>
         </nav>
@@ -202,7 +211,7 @@ const Header = ({
             <Bell className="h-5 w-5" />
             {notificationCount > 0 && (
               <Badge
-                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full p-0"
+                className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full p-0 font-medium shadow-sm"
                 variant="destructive"
               >
                 {notificationCount}
@@ -361,6 +370,15 @@ const Header = ({
                   >
                     <Crown className="h-5 w-5" />
                     <span>Subscription</span>
+                  </Link>
+                </SheetClose>
+                <SheetClose asChild>
+                  <Link
+                    to="/partners"
+                    className={`flex items-center space-x-2 p-2 rounded-md hover:bg-muted ${isActive("/partners") ? "bg-muted font-medium" : ""}`}
+                  >
+                    <Building className="h-5 w-5" />
+                    <span>Partners</span>
                   </Link>
                 </SheetClose>
 

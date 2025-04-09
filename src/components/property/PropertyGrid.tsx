@@ -141,7 +141,7 @@ const PropertyGrid = ({
   const totalPages = Math.ceil(totalProperties / propertiesPerPage);
 
   return (
-    <div className="w-full bg-gray-50 p-4">
+    <div className="w-full bg-gray-50 p-4 rounded-lg">
       <div className="flex flex-col space-y-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="text-sm text-gray-500">
@@ -168,7 +168,7 @@ const PropertyGrid = ({
                 variant={viewMode === "grid" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => handleViewChange("grid")}
-                className="rounded-none border-0"
+                className="rounded-none border-0 transition-colors"
               >
                 <Grid className="h-4 w-4" />
               </Button>
@@ -176,7 +176,7 @@ const PropertyGrid = ({
                 variant={viewMode === "list" ? "default" : "ghost"}
                 size="sm"
                 onClick={() => handleViewChange("list")}
-                className="rounded-none border-0"
+                className="rounded-none border-0 transition-colors"
               >
                 <List className="h-4 w-4" />
               </Button>
@@ -205,8 +205,8 @@ const PropertyGrid = ({
             ))}
           </div>
         ) : properties.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
-            <div className="text-4xl mb-4">🏠</div>
+          <div className="flex flex-col items-center justify-center py-12 text-center bg-white rounded-lg shadow-sm border border-gray-100">
+            <div className="text-4xl mb-4 animate-pulse">🏠</div>
             <h3 className="text-xl font-semibold mb-2">No properties found</h3>
             <p className="text-gray-500 max-w-md">
               Try adjusting your search filters to find more properties that

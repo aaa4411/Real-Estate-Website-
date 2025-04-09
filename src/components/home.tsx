@@ -1,11 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "./layout/Header";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Building, MapPin, ArrowRight } from "lucide-react";
 import PropertyCard from "./property/PropertyCard";
-import PremiumBanner from "./subscription/PremiumBanner";
+import PartnersSection from "./partnerships/PartnersSection";
 
 function Home() {
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -83,15 +82,6 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header
-        username="John Doe"
-        isPremium={false}
-        notificationCount={3}
-        onSearch={(query) => console.log("Search query:", query)}
-      />
-
-      <PremiumBanner />
-
       {/* Hero Section */}
       <section className="relative">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70 z-10" />
@@ -104,14 +94,20 @@ function Home() {
         />
         <div className="absolute inset-0 flex items-center justify-center z-20">
           <div className="container text-center text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 animate-in">
               Find Your Perfect Home
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+            <p
+              className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-in"
+              style={{ animationDelay: "0.2s" }}
+            >
               Discover thousands of properties with virtual tours and AI-powered
               recommendations
             </p>
-            <div className="max-w-3xl mx-auto bg-white rounded-lg p-2 shadow-lg">
+            <div
+              className="max-w-3xl mx-auto bg-white rounded-lg p-3 shadow-xl animate-in"
+              style={{ animationDelay: "0.4s" }}
+            >
               <form
                 className="flex flex-col md:flex-row gap-2"
                 onSubmit={(e) => {
@@ -126,12 +122,15 @@ function Home() {
                   <Input
                     type="text"
                     placeholder="Search by location, property type, or features"
-                    className="pl-10 h-12 text-black"
+                    className="pl-10 h-12 text-black focus-visible:ring-primary"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
-                <Button type="submit" className="h-12 px-6">
+                <Button
+                  type="submit"
+                  className="h-12 px-6 bg-primary hover:bg-primary/90 transition-all"
+                >
                   Search Properties
                 </Button>
               </form>
@@ -142,11 +141,19 @@ function Home() {
 
       {/* Featured Properties Section */}
       <section className="py-16 container">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-bold">Featured Properties</h2>
-          <Button variant="outline" asChild>
-            <Link to="/properties">
-              View All <ArrowRight className="ml-2 h-4 w-4" />
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+          <h2 className="text-3xl font-bold relative">
+            Featured Properties
+            <span className="absolute bottom-0 left-0 w-20 h-1 bg-primary mt-2"></span>
+          </h2>
+          <Button
+            variant="outline"
+            asChild
+            className="hover:bg-primary hover:text-white transition-colors"
+          >
+            <Link to="/properties" className="group">
+              View All{" "}
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </div>
@@ -173,10 +180,17 @@ function Home() {
       {/* Popular Locations Section */}
       <section className="py-16 bg-muted/30">
         <div className="container">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold">Popular Locations</h2>
-            <Button variant="outline">
-              View All Locations <ArrowRight className="ml-2 h-4 w-4" />
+          <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+            <h2 className="text-3xl font-bold relative">
+              Popular Locations
+              <span className="absolute bottom-0 left-0 w-20 h-1 bg-primary mt-2"></span>
+            </h2>
+            <Button
+              variant="outline"
+              className="hover:bg-primary hover:text-white transition-colors group"
+            >
+              View All Locations{" "}
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>
 
@@ -185,7 +199,7 @@ function Home() {
               <Link
                 key={location.name}
                 to={`/properties?location=${encodeURIComponent(location.name)}`}
-                className="group relative rounded-lg overflow-hidden h-64 shadow-md hover:shadow-xl transition-all"
+                className="group relative rounded-lg overflow-hidden h-64 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 z-10" />
                 <img
@@ -208,12 +222,13 @@ function Home() {
 
       {/* Features Section */}
       <section className="py-16 container">
-        <h2 className="text-3xl font-bold text-center mb-12">
+        <h2 className="text-3xl font-bold text-center mb-12 relative">
           Why Choose Our Platform
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-primary mt-2"></span>
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md transition-shadow">
+          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md hover:border-primary transition-all duration-300">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <Building className="h-8 w-8 text-primary" />
             </div>
@@ -224,7 +239,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md transition-shadow">
+          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md hover:border-primary transition-all duration-300">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +261,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md transition-shadow">
+          <div className="flex flex-col items-center text-center p-6 rounded-lg border hover:shadow-md hover:border-primary transition-all duration-300">
             <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -271,13 +286,21 @@ function Home() {
         </div>
 
         <div className="text-center mt-12">
-          <Button size="lg" asChild>
-            <Link to="/subscription">
-              Upgrade to Premium <ArrowRight className="ml-2 h-4 w-4" />
+          <Button
+            size="lg"
+            asChild
+            className="bg-primary hover:bg-primary/90 shadow-md hover:shadow-lg transition-all"
+          >
+            <Link to="/subscription" className="group">
+              Upgrade to Premium{" "}
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
         </div>
       </section>
+
+      {/* Local Business Partners Section */}
+      <PartnersSection />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
